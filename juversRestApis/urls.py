@@ -14,9 +14,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+"""django.conf.urls.url() was deprecated in Django 3.0, and is removed in Django 4+.
+The easiest fix is to replace url() with re_path(). re_path uses regexes like url, so you only have to update the import and replace url with re_path.
+"""
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, re_path
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    re_path("admin/", admin.site.urls),
+    re_path(r'^', include('tutorials.urls')),
 ]
